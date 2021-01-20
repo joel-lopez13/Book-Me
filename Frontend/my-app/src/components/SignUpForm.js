@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function SignUp({ toggle, setUser }) {
     const [inputUser, setInputUser] = useState("");
@@ -49,7 +49,7 @@ function SignUp({ toggle, setUser }) {
         <input placeholder="Password" onChange={passwordChangeHandler} type="password"/><br/>
         <input placeholder="Confirm Password" onChange={confirmPasswordChangeHandler} type="password"/><br/>
         <button onClick={addUser}>Sign Up</button>
-        {/* <p>Existing user? Log in <Link onClick={toggle}>here</Link>.</p> */}
+        <p>Existing user? Log in <Link onClick={toggle}>here</Link>.</p>
     </div>
     )
 }

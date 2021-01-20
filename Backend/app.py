@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_cors import CORS
@@ -38,3 +38,12 @@ def create_user():
 
     return '<h1>Added new consumer</h1>'
 
+
+@app.route('/login/<username>/<password>')
+def login_user(username, password):
+    # data = request.get_json()
+    # username = data.get("username")
+    # password = data.get("password")
+    if Consumer.query.filter_by(name=username, password=password).first():
+        return '<h1>You logged in</h1>'
+    return '<h1>Wrong login</h1>'

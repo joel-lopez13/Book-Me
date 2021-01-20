@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
-// import { BrowserRouter } from 'react-router-dom';
-import SignUpForm from './components/SignUpForm';
+import { BrowserRouter } from 'react-router-dom';
+// import SignUpForm from './components/SignUpForm';
+import Router from './components/Router';
 import './App.css';
 
 function App() {
+  const [user, setUser] = useState(
+    JSON.parse(sessionStorage.getItem("user")) || {}
+  );
   return (
-    <div className="App">
+    <BrowserRouter className="App">
       <header className="App-header">
-        <SignUpForm />
+        {/* <SignUpForm /> */}
+        <Router user={user} setUser={setUser}/>
       </header>
-    </div>
+    </BrowserRouter>
   );
 }
 
