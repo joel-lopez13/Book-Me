@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter } from 'react-router-dom';
-// import SignUpForm from './components/SignUpForm';
 import Router from './components/Router';
+import NavBar from './components/NavBar';
 import './App.css';
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter className="App">
       <header className="App-header">
-        {/* <SignUpForm /> */}
+        <NavBar user={user} setUser={setUser}/>
         <Router user={user} setUser={setUser}/>
       </header>
     </BrowserRouter>

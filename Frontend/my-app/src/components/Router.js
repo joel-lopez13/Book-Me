@@ -7,7 +7,7 @@ export default function Router({ user, setUser }) {
     if (user.session_id) {
         return (
         <div>
-            <h1>Youre logged in</h1>
+            <h1>{user.username} logged in</h1>
         </div>
         )
     } else {
