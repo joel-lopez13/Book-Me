@@ -6,6 +6,7 @@ function SignUp({ toggle, setUser }) {
     const [inputEmail, setInputEmail] = useState("");
     const [inputPassword, setInputPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [userType, setUserType] = useState("consumer");
 
     function usernameChangeHandler(e) {
     setInputUser(e.target.value);
@@ -19,6 +20,9 @@ function SignUp({ toggle, setUser }) {
     function confirmPasswordChangeHandler(e) {
     setConfirmPassword(e.target.value);
     }
+    function userTypeChangeHandler(e) {
+        setUserType(e.target.value);
+    }
 
     const addUser = async () => {
     if (inputPassword !== confirmPassword) {
@@ -27,7 +31,8 @@ function SignUp({ toggle, setUser }) {
     }
     const userData = JSON.stringify({username: inputUser, 
                                     email: inputEmail,
-                                    password: inputPassword
+                                    password: inputPassword,
+                                    userType: userType
                                     });
     const configs = {
         method: "POST",
@@ -48,8 +53,12 @@ function SignUp({ toggle, setUser }) {
         <input placeholder="Email" onChange={emailChangeHandler}/><br/>
         <input placeholder="Password" onChange={passwordChangeHandler} type="password"/><br/>
         <input placeholder="Confirm Password" onChange={confirmPasswordChangeHandler} type="password"/><br/>
-        <input type="checkbox" id="userType" value="userType"/>
-        <label for="userType">I am a provider</label><br/>
+        <label for="usertype">Are you a consumer or provider? </label>
+        <select name="usertype" id="usertype" onChange={userTypeChangeHandler}>
+            <option value="consumer">Consumer</option>
+            <option value="provider">Provider</option>
+        </select>
+        <br/>
         <button onClick={addUser}>Sign Up</button>
         <p>Existing user? Log in <Link onClick={toggle}>here</Link>.</p>
     </div>
