@@ -39,6 +39,7 @@ class Transactions(db.Model):
     cpk = db.Column(db.Integer, db.ForeignKey('consumer.pk'))
     ppk = db.Column(db.Integer, db.ForeignKey('provider.pk')) 
     appointment_date = db.Column(db.String(100))
+    appointment_time = db.Column(db.String(5))
 
 
 @app.route('/create', methods=["POST"])
@@ -111,9 +112,73 @@ def create_appt():
 
     transaction = Transactions(cpk=consumer.pk,
                                 ppk=provider.pk,
-                                appointment_date=data.get("apptDate"))
+                                appointment_date=data.get("apptDate"),
+                                appointment_time=data.get("apptTime"))
     
     db.session.add(transaction)
     db.session.commit()
     
-    return jsonify({}) 
+    return jsonify({})
+
+
+@app.route('/getTransactions', methods=["POST"])
+def get_transactions():
+    data = request.get_json()
+    username = data.get("username")
+    consm = Consumer.query.filter_by(name=username).first()
+    print(username)
+    dates = []
+    for date in consm.appointments:
+        dates.append(date.appointment_date)
+    print(dates)
+    provs = []
+    for prov in consm.appointments:
+        provs.append(prov.ProvPK.name)
+    print(provs)
+    times = []
+    for time in consm.appointments:
+        times.append(time.appointment_time)
+    print(times)
+    
+
+    return jsonify({"username": username,
+                    "dates": dates,
+                    "providers": provs,
+                    "apptTimes": times})
+
+
+@app.route('/getTimes', methods=["POST"])
+def get_times():
+    data = request.get_json()
+    username = data.get("username")
+    prov = Provider.query.filter_by(name=username).first()
+    times = []
+    print(prov)
+    for time in prov.appointments:
+        times.append(time.appointment_time)
+
+    return jsonify({"apptTimes": times})
+
+@app.route('/getTransactionsProv', methods=["POST"])
+def get_transactions_prov():
+    data = request.get_json()
+    username = data.get("username")
+    prov = Provider.query.filter_by(name=username).first()
+    print(username)
+    dates = []
+    for date in prov.appointments:
+        dates.append(date.appointment_date)
+    print(dates)
+    consms = []
+    for consm in prov.appointments:
+        consms.append(consm.CnsmPK.name)
+    print(consms)
+    times = []
+    for time in prov.appointments:
+        times.append(time.appointment_time)
+    print(times)
+
+    return jsonify({"username": username,
+                "dates": dates,
+                "consumers": consms,
+                "apptTimes": times})

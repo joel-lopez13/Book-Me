@@ -13,16 +13,16 @@ export default function Router({ user, setUser }) {
             return (
                 <div>
                     <Switch>
-                        <Route path="/consumer">
+                        {/* <Route path="/consumer">
                             <ConsumerView user={user} /> 
-                        </Route>
+                        </Route> */}
                         <Route path="/cAppointments">
                             <CAppointmentsView user={user} />
                         </Route>
                         <Route path="/booking">
                             <BookingView user={user} />
                         </Route>
-                        <Redirect from="/" to="/consumer" />
+                        <Redirect from="/" to="/cAppointments" />
                     </Switch>
                 </div>
             )

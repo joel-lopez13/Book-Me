@@ -54,12 +54,12 @@ function SignUp({ toggle, setUser }) {
         <input placeholder="Password" onChange={passwordChangeHandler} type="password"/><br/>
         <input placeholder="Confirm Password" onChange={confirmPasswordChangeHandler} type="password"/><br/>
         <label for="usertype">Are you a consumer or provider? </label>
-        <select name="usertype" id="usertype" onChange={userTypeChangeHandler}>
-            <option value="consumer">Consumer</option>
-            <option value="provider">Provider</option>
+        <select className="dropdown" name="usertype" id="usertype" onChange={userTypeChangeHandler}>
+            <option className="dropdownitem" value="consumer">Consumer</option>
+            <option className="dropdownitem" value="provider">Provider</option>
         </select>
         <br/>
-        <button onClick={addUser}>Sign Up</button>
+        <button className="buttons" onClick={addUser}>Sign Up</button>
         <p>Existing user? Log in <Link onClick={toggle}>here</Link>.</p>
     </div>
     )

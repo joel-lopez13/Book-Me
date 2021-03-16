@@ -27,9 +27,9 @@ function Login({ toggle, setUser }) {
     return (
     <div>
         <h3>Log In</h3>
-        <input onChange={usernameChangeHandler} type="text"/><br/>
-        <input onChange={e => setInputPassword(e.target.value)} type="password"/><br/>
-        <button onClick={sendLogin}>Log In</button>
+        <input placeholder="Username" onChange={usernameChangeHandler} type="text"/><br/>
+        <input placeholder="Password" onChange={e => setInputPassword(e.target.value)} type="password"/><br/>
+        <button className="buttons" onClick={sendLogin}>Log In</button>
         <p>New user? Sign up <Link onClick={toggle}>here</Link>.</p>
     </div>
     )

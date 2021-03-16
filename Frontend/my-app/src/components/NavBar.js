@@ -11,20 +11,18 @@ const NavBar = ({ user, setUser }) => {
 if (user.session_id) {
     if (user.userType === "consumer") {
         return (
-            <div>
-                <span>Book Me</span>
-                <Link to="/cAppointments">My Appointments</Link>
-                <Link to="/booking">Book Appointment</Link>
-                <Link onClick={logOut}>Logout</Link>
+            <div className="navBar">
+                <span className="logo">Book Me</span>
+                <Link className="Links" to="/cAppointments">My Appointments</Link>
+                <Link className="Links" to="/booking">Book Appointment</Link>
+                <Link className="Links" onClick={logOut}>Logout</Link>
             </div>
         )}
         else if (user.userType === "provider") {
             return (
-                <div>
-                    <span>Book Me</span>
-                    <Link to="/pAppointments">My Appointments</Link>
-                    <Link to="/schedule"> My Schedule</Link>
-                    <Link onClick={logOut}>Logout</Link>
+                <div className="navBar">
+                    <span className="logo">Book Me</span>
+                    <Link className="Links" onClick={logOut}>Logout</Link>
                 </div>
             )
         }
@@ -32,7 +30,7 @@ if (user.session_id) {
     return (
         <div>
             <nav>
-                <span>Book Me</span>
+                <h1>Book Me</h1>
             </nav>
         </div>
     )}
